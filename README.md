@@ -3,6 +3,9 @@ My Dockerfile based on Ubuntu/Intel
 
 
 ## 1. Starting Docker
+docker build -t name .  
+docker run -it --rm -v ${PWD}:/data name
+
 
 ## 2. Installing anaconda (for python)
 

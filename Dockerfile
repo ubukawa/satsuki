@@ -1,12 +1,23 @@
-FROM ubuntu:latest
+FROM osgeo/gdal:ubuntu-small-3.4.0
 WORKDIR /root
-ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update&&\
-  apt-get -y upgrade&&\
-  apt-get -y install curl sudo&&\
-  apt-get -y install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6&&\
-  apt-get -y install git
+RUN apt update&&\
+  apt -y upgrade&&\
+  apt -y install curl sudo&&\
+  apt -y install git&&\
+  apt -y install \
+  gdal-bin \
+  libgdal-dev \
+  libproj-dev \
+  python3-numpy \
+  python3-pip \
+  python3-rasterio \
+  rasterio \
+  sqlite3 &&\
+  git clone https://github.com/mapbox/rio-rgbify.git &&\
+  cd rio-rgbify &&\
+  pip install -e '.[test]' &&\
+  cd .. \
 
 
 
